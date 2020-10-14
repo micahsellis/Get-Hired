@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch, Redirect, NavLink } from 'react-router-dom';
 import './App.css';
 import SignupPage from '../SignupPage/SignupPage';
 import LoginPage from '../LoginPage/LoginPage';
 import userService from '../../utils/userService';
 import NavBar from '../../components/NavBar/NavBar';
-import { searchListingAPI } from '../../../controllers/githubJobs'
+// import { searchListingAPI } from '../../controllers/githubJobs';
+import * as jobAPI from '../../services/jobs-api';
+import JobListPage from '../../components/JobListPage/JobListPage';
+import AddJobPage from '../../components/AddJobPage/AddJobPage'
 
 class App extends Component {
   constructor() {
@@ -25,14 +28,20 @@ class App extends Component {
   handleSignupOrLogin = () => {
     this.setState({user: userService.getUser()})
   }
+
+  handleAddJob = async newJobData => {
+    const newJob = await jobAPI.create(newJobData);
+    this.setState(state => ({
+      jobs: [...this.state.jobs, newJob]
+    }),
+      // Using cb to wait for state to update before rerouting
+      () => this.props.history.push('/'));
+  }
 /*--- Lifecycle Methods ---*/
   
   async componentDidMount() {
-    const jobs = await searchListingAPI()
-    console.log('HERE', jobs)
-    this.setState({
-      jobs: jobs[0].company
-    })
+    const jobs = await jobAPI.getAll();
+    this.setState({ jobs });
   }
 
   render() {
@@ -44,7 +53,7 @@ class App extends Component {
         />
         <Switch>
           <Route exact path='/' render={() =>
-            <div>{this.state.jobs}</div>
+            <div>{this.state.jobs.length ? this.state.jobs[0].title : 'Hello'}</div>
           }/>
           <Route exact path='/signup' render={({ history }) => 
             <SignupPage
@@ -58,7 +67,15 @@ class App extends Component {
               history={history}
               handleSignupOrLogin={this.handleSignupOrLogin}
             />
-          }/>
+          } />
+          <Route exact path='/jobs' render={() => 
+            <JobListPage jobs={this.state.jobs} />
+          } />
+          <Route exact path='/add' render={() =>
+            <AddJobPage
+              handleAddJob={this.handleAddJob}
+            />
+          } />
         </Switch>
       </div>
     );

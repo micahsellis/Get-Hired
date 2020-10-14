@@ -11,6 +11,10 @@ const NavBar = (props) => {
     </div>
     :
     <div>
+      <Link exact to='/'>Jobs LIST</Link>
+      &nbsp;&nbsp;| &nbsp;&nbsp;
+      <Link exact to='/add'>ADD Job</Link>
+      &nbsp;&nbsp;| &nbsp;&nbsp;
       <Link to='/login' className='NavBar-link'>LOG IN</Link>
       &nbsp;&nbsp;|&nbsp;&nbsp;
       <Link to='/signup' className='NavBar-link'>SIGN UP</Link>

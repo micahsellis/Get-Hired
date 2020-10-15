@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: lightgrey;
 }
 
 code {
@@ -14,15 +15,15 @@ code {
 
 :root {
   --black: #07020D;
-  --accent: #5DB7DE;
-  --background: #F1E9DB;
-  --secondary: #A39B8B;
-  --secondary-dark: #716A5C;
+  --accent:white;
+  --background: grey;
+  --secondary: white;
+  --secondary-dark: white;
 }
 
 a {
   color: var(--accent);
-  padding: 1vmin;
+  /* padding: 1vmin; */
   border-radius: 1vmin;
   text-decoration: none !important;
 }

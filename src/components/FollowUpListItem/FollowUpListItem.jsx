@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './JobListItem.css';
+import './FollowUpListItem.css';
 
-function JobListItem(props) {
+function FollowUpListItem(props) {
     return (
         <div className='panel panel-default'>
             <div className="panel-heading">
-                <h3 className='panel-title'>{props.job.title}</h3>
+                <h3 className='panel-title'>{props.followup.title}</h3>
             </div>
             <div className="panel-footer PuppyListItem-action-panel">
                 <Link
@@ -38,4 +38,4 @@ function JobListItem(props) {
     );
 }
 
-export default JobListItem;
+export default FollowUpListItem;

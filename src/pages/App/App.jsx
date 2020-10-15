@@ -8,7 +8,9 @@ import NavBar from '../../components/NavBar/NavBar';
 // import { searchListingAPI } from '../../controllers/githubJobs';
 import * as jobAPI from '../../services/jobs-api';
 import JobListPage from '../../components/JobListPage/JobListPage';
-import AddJobPage from '../../components/AddJobPage/AddJobPage'
+import AddJobPage from '../../components/AddJobPage/AddJobPage';
+import JobDetailPage from '../../components/JobDetailPage/JobDetailPage';
+import EditJobPage from '../../components/EditJobPage/EditJobPage'
 
 class App extends Component {
   constructor() {
@@ -32,11 +34,33 @@ class App extends Component {
   handleAddJob = async newJobData => {
     const newJob = await jobAPI.create(newJobData);
     this.setState(state => ({
-      jobs: [...this.state.jobs, newJob]
+      jobs: [...state.jobs, newJob]
     }),
       // Using cb to wait for state to update before rerouting
-      () => this.props.history.push('/'));
+      () => this.props.history.push('/jobs'));
   }
+
+  handleDeleteJob = async id => {
+    await jobAPI.deleteOne(id);
+    this.setState(state => ({
+      // Yay, filter returns a NEW array
+      jobs: state.jobs.filter(j => j._id !== id)
+    }), () => this.props.history.push('/jobs'));
+  }
+
+  handleUpdateJob = async updatedJobData => {
+    const updatedJob = await jobAPI.update(updatedJobData);
+    // Using map to replace just the puppy that was updated
+    const newJobsArr = this.state.jobs.map(j =>
+      j._id === updatedJob._id ? updatedJob : j
+    );
+    this.setState(
+      { jobs: newJobsArr },
+      // This cb function runs after state is updated
+      () => this.props.history.push('/')
+    );
+  }
+
 /*--- Lifecycle Methods ---*/
   
   async componentDidMount() {
@@ -53,7 +77,7 @@ class App extends Component {
         />
         <Switch>
           <Route exact path='/' render={() =>
-            <div>{this.state.jobs.length ? this.state.jobs[0].title : 'Hello'}</div>
+            <div>WELCOME! Log in to see your jobs!</div>
           }/>
           <Route exact path='/signup' render={({ history }) => 
             <SignupPage
@@ -69,11 +93,23 @@ class App extends Component {
             />
           } />
           <Route exact path='/jobs' render={() => 
-            <JobListPage jobs={this.state.jobs} />
+            <JobListPage
+              jobs={this.state.jobs} 
+              handleDeleteJob={this.handleDeleteJob}
+              />
           } />
           <Route exact path='/add' render={() =>
             <AddJobPage
               handleAddJob={this.handleAddJob}
+            />
+          } />
+          <Route exact path='/details' render={({ location }) =>
+            <JobDetailPage location={location} />
+          } />
+          <Route exact path='/edit' render={({ location }) =>
+            <EditJobPage
+              handleUpdateJob={this.handleUpdateJob}
+              location={location}
             />
           } />
         </Switch>

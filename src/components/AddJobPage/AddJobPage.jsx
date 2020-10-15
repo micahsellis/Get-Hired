@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
+import tokenService from '../../utils/tokenService'
 
 class AddJobPage extends Component {
     state = {
         invalidForm: true,
         formData: {
             jobURL: '',
-            title: 'New Job',
-            company: 'Company Name',
+            title: '',
+            company: '',
             address: '',
             phone: '',
             email: '',
@@ -14,11 +15,13 @@ class AddJobPage extends Component {
             managerTitle: '',
             managerEmail: '',
             managerPhone: '',
+            userID: tokenService.getUserFromToken(),
             active: true
         }
     };
 
     formRef = React.createRef();
+
 
     handleSubmit = e => {
         e.preventDefault();

@@ -1,3 +1,6 @@
+import tokenService from '../utils/tokenService';
+
+
 const BASE_URL = '/api/jobs';
 
 export function getAll() {
@@ -8,7 +11,10 @@ export function getAll() {
 export function create(job) {
     return fetch(BASE_URL, {
         method: 'POST',
-        headers: { 'content-type': 'application/json' },
+        headers: {
+            'content-type': 'application/json',
+            'Authorization': 'Bearer ' + tokenService.getToken()
+        },
         body: JSON.stringify(job)
     }).then(res => res.json());
 }
@@ -16,7 +22,10 @@ export function create(job) {
 export function update(job) {
     return fetch(`${BASE_URL}/${job._id}`, {
         method: 'PUT',
-        headers: { 'content-type': 'application/json' },
+        headers: {
+            'content-type': 'application/json',
+            'Authorization': 'Bearer ' + tokenService.getToken()
+        },
         body: JSON.stringify(job)
     }).then(res => res.json());
 }

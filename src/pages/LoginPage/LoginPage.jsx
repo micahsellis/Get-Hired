@@ -37,6 +37,7 @@ class LoginPage extends Component {
               <button>Log In</button>&nbsp;&nbsp;&nbsp;
               <Link to='/'>Cancel</Link>
         </form>
+        <Link className='nav-link' to='/signup' className='NavBar-link'>SIGN UP</Link>
       </div>
     );
   }

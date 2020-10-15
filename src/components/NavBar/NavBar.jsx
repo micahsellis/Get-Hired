@@ -4,24 +4,29 @@ import './NavBar.css';
 
 const NavBar = (props) => {
   let nav = props.user ?
-    <div>
-      <Link to='' className='NavBar-link' onClick={props.handleLogout}>LOG OUT</Link>
-      &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-      <span className='NavBar-welcome'>WELCOME, {props.user.name}</span>
-    </div>
+    <ul className="nav nav-tabs">
+      <li className="nav-item">
+        <Link className='nav-link' exact to='/jobs'>Jobs LIST</Link>
+      </li>
+      <li className="nav-item">
+        <Link className='nav-link' exact to='/add'>ADD Job</Link>
+      </li>
+      <li className="nav-item">
+        <Link to='' className='nav-link' onClick={props.handleLogout}>LOG OUT</Link>
+      </li>
+      <li className="nav-item">
+        <span className='NavBar-welcome'>WELCOME, {props.user.name}</span>
+      </li>
+    </ul>
     :
-    <div>
-      <Link exact to='/'>Jobs LIST</Link>
-      &nbsp;&nbsp;| &nbsp;&nbsp;
-      <Link exact to='/add'>ADD Job</Link>
-      &nbsp;&nbsp;| &nbsp;&nbsp;
-      <Link to='/login' className='NavBar-link'>LOG IN</Link>
-      &nbsp;&nbsp;|&nbsp;&nbsp;
-      <Link to='/signup' className='NavBar-link'>SIGN UP</Link>
-    </div>;
+    <ul className="nav nav-tabs">
+      <li className="nav-item">
+        <Link className='nav-link' to='/login' className='NavBar-link'>LOG IN</Link>
+      </li>
+    </ul>;
 
   return (
-    <div className='NavBar'>
+    <div>
       {nav}
     </div>
   );

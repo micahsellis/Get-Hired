@@ -5,6 +5,7 @@ const followupSchema = new mongoose.Schema({
     interviewAddress: String,
     confirmationEmail: String,
     contactName: String,
+    contactTitle: String,
     contactPhone: Number,
     contactEmail: {
         type: String,
@@ -22,7 +23,9 @@ const followupSchema = new mongoose.Schema({
     networkID: {
         type: mongoose.Schema.Types.ObjectId, ref: "Network"
     }
-})
+}, {
+    timestamps: true
+});
 
 module.exports = mongoose.model(
     'FollowUp', followupSchema

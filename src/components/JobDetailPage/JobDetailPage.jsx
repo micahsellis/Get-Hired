@@ -1,5 +1,8 @@
 import React from 'react';
 import JobCard from '../../components/JobCard/JobCard';
+import FollowUpCard from '../FollowUpCard/FollowUpCard';
+import AddFollowUp from '../AddFollowUp/AddFollowUp';
+
 
 function JobDetailPage(props) {
     // Refer to PuppyListItem to see how puppy is being passed via the <Link>
@@ -11,6 +14,13 @@ function JobDetailPage(props) {
                 key={job._id}
                 job={job}
             />
+            {props.followUp.map(fu => (
+                <FollowUpCard
+                    followUp={fu}
+                    key={fu._id}
+                />
+            ))}
+            <AddFollowUp />
         </>
     );
 }

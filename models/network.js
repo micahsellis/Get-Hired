@@ -23,7 +23,9 @@ const networkSchema = new mongoose.Schema({
     userID: {
         type: mongoose.Schema.Types.ObjectId, ref: "User"
     }
-})
+}, {
+    timestamps: true
+});
 
 module.exports = mongoose.model(
     'Network', networkSchema

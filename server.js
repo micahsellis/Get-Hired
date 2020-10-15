@@ -2,7 +2,6 @@ const express = require('express');
 const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
-var jobsRouter = require('./routes/api/jobs');
 
 const app = express();
 
@@ -18,6 +17,7 @@ app.use(express.static(path.join(__dirname, 'build')));
 // Put API routes here, before the "catch all" route
 app.use('/api/users', require('./routes/api/users'));
 app.use('/api/jobs', require('./routes/api/jobs'));
+app.use('/api/followups', require('./routes/api/followups'))
 app.use(require('./config/auth'));
 
 

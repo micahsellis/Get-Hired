@@ -1,32 +1,18 @@
 import React, { Component } from 'react';
-import tokenService from '../../utils/tokenService'
+import { Link } from 'react-router-dom';
 
-class AddJobPage extends Component {
+class EditFollowUpPage extends Component {
     state = {
-        invalidForm: true,
-        formData: {
-            interviewDate: '',
-            interviewAddress: '',
-            confirmationEmail: '',
-            contactName: '',
-            contactTitle: '',
-            contactPhone: '',
-            contactEmail: '',
-            contactURL: '',
-            notes: '',
-            managerPhone: '',
-            userID: tokenService.getUserFromToken(),
-            jobId: this.props.jobID,
-            active: true
-        }
+        invalidForm: false,
+        // Refer to PuppyListItem to see how puppy is being passed via the <Link>
+        formData: this.props.location.state.followup
     };
 
     formRef = React.createRef();
 
-
     handleSubmit = e => {
         e.preventDefault();
-        this.props.handleAddJob(this.state.formData);
+        this.props.handleUpdateFollowUp(this.state.formData);
     };
 
     handleChange = e => {
@@ -40,7 +26,7 @@ class AddJobPage extends Component {
     render() {
         return (
             <>
-                <h1>Add A Follow Up Action</h1>
+                <h1>Edit Follow Up</h1>
                 <form ref={this.formRef} autoComplete="off" onSubmit={this.handleSubmit}>
                     <div className="form-group">
                         <label>Interview Date</label>
@@ -127,14 +113,15 @@ class AddJobPage extends Component {
                     </div>
                     <button
                         type="submit"
-                        className="btn"
+                        className="btn btn-xs"
                         disabled={this.state.invalidForm}
                     >
-                        ADD JOB
-                    </button>
+                        SAVE CHANGES
+         </button>&nbsp;&nbsp;
+         <Link to='/'>CANCEL</Link>
                 </form>
             </>
         );
     }
 }
-export default AddJobPage;
+export default EditFollowUpPage;

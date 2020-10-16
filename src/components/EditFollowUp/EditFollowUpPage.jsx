@@ -44,7 +44,6 @@ class EditFollowUpPage extends Component {
                             name="interviewAddress"
                             value={this.state.formData.interviewAddress}
                             onChange={this.handleChange}
-                            required
                         />
                     </div>
                     <div className="form-group">
@@ -54,7 +53,6 @@ class EditFollowUpPage extends Component {
                             name="confirmationEmail"
                             value={this.state.formData.confirmationEmail}
                             onChange={this.handleChange}
-                            required
                         />
                     </div>
                     <div className="form-group">
@@ -117,9 +115,15 @@ class EditFollowUpPage extends Component {
                         disabled={this.state.invalidForm}
                     >
                         SAVE CHANGES
-         </button>&nbsp;&nbsp;
-         <Link to='/'>CANCEL</Link>
+                    </button>&nbsp;&nbsp;
+                    <Link to='/jobs'>CANCEL</Link>
                 </form>
+                <button
+                    className="btn btn-xs btn-danger margin-left-10"
+                    onClick={() => this.props.handleDeleteFollowUp(this.props.followUp._id)}
+                >
+                    DELETE
+                </button>
             </>
         );
     }

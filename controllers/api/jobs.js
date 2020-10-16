@@ -9,7 +9,7 @@ module.exports = {
 };
 
 async function index(req, res) {
-    const jobs = await Job.find({});
+    const jobs = await Job.find({userID: req.user._id});
     res.status(200).json(jobs);
 }
 

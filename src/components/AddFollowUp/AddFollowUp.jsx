@@ -26,7 +26,7 @@ class AddJobPage extends Component {
 
     handleSubmit = e => {
         e.preventDefault();
-        this.props.handleAddJob(this.state.formData);
+        this.props.handleAddFollowUp(this.state.formData);
     };
 
     handleChange = e => {
@@ -58,7 +58,6 @@ class AddJobPage extends Component {
                             name="interviewAddress"
                             value={this.state.formData.interviewAddress}
                             onChange={this.handleChange}
-                            required
                         />
                     </div>
                     <div className="form-group">
@@ -68,7 +67,6 @@ class AddJobPage extends Component {
                             name="confirmationEmail"
                             value={this.state.formData.confirmationEmail}
                             onChange={this.handleChange}
-                            required
                         />
                     </div>
                     <div className="form-group">

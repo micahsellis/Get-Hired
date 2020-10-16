@@ -9,7 +9,7 @@ module.exports = {
 };
 
 async function index(req, res) {
-    const followUps = await FollowUp.find({jobID: req.params.jobID});
+    const followUps = await FollowUp.find({userID: req.user._id});
     res.status(200).json(followUps);
 }
 

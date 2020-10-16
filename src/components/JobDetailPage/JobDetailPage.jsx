@@ -2,25 +2,47 @@ import React from 'react';
 import JobCard from '../../components/JobCard/JobCard';
 import FollowUpCard from '../FollowUpCard/FollowUpCard';
 import AddFollowUp from '../AddFollowUp/AddFollowUp';
+import followUpCard from '../FollowUpCard/FollowUpCard';
 
 
 function JobDetailPage(props) {
-    // Refer to PuppyListItem to see how puppy is being passed via the <Link>
+    let followUps = props.followUps
     const job = props.location.state.job;
-    return (
+    console.log(followUps)
+    let jobs = followUps ?
         <>
             <h1>Job Details</h1>
             <JobCard
                 key={job._id}
                 job={job}
             />
-            {props.followUp.map(fu => (
+            {followUps.filter(fu => fu.jobID === job._id).map(fu => (
                 <FollowUpCard
                     followUp={fu}
                     key={fu._id}
                 />
             ))}
-            <AddFollowUp />
+            <AddFollowUp
+                jobID={job._id} 
+                handleAddFollowUp={props.handleAddFollowUp}
+                />
+        </>
+        :
+        <>
+            <h1>Job Details</h1>
+            <JobCard
+                key={job._id}
+                job={job}
+            />
+            <AddFollowUp
+                jobID={job._id} 
+                handleAddFollowUp={props.handleAddFollowUp}
+                />
+        </>
+
+    return (
+        <>
+            {jobs}
         </>
     );
 }

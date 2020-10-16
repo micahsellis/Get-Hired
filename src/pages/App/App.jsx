@@ -7,17 +7,20 @@ import userService from '../../utils/userService';
 import NavBar from '../../components/NavBar/NavBar';
 // import { searchListingAPI } from '../../controllers/githubJobs';
 import * as jobAPI from '../../services/jobs-api';
+import * as followUpAPI from '../../services/followups-api'
 import JobListPage from '../../components/JobListPage/JobListPage';
 import AddJobPage from '../../components/AddJobPage/AddJobPage';
 import JobDetailPage from '../../components/JobDetailPage/JobDetailPage';
-import EditJobPage from '../../components/EditJobPage/EditJobPage'
+import EditJobPage from '../../components/EditJobPage/EditJobPage';
+import EditFollowUpPage from '../../components/EditFollowUp/EditFollowUpPage';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
       user: userService.getUser(),
-      jobs: []
+      jobs: [],
+      followUps: []
     };
   }
 
@@ -28,13 +31,26 @@ class App extends Component {
   }
 
   handleSignupOrLogin = () => {
-    this.setState({user: userService.getUser()})
+    this.setState({
+      user: userService.getUser()
+    },
+      () => this.seedMyState()
+    )
   }
 
   handleAddJob = async newJobData => {
     const newJob = await jobAPI.create(newJobData);
     this.setState(state => ({
       jobs: [...state.jobs, newJob]
+    }),
+      // Using cb to wait for state to update before rerouting
+      () => this.props.history.push('/jobs'));
+  }
+
+  handleAddFollowUp = async newFollowUpData => {
+    const newFollowUp = await followUpAPI.create(newFollowUpData);
+    this.setState(state => ({
+      followUps: [...state.followUps, newFollowUp]
     }),
       // Using cb to wait for state to update before rerouting
       () => this.props.history.push('/jobs'));
@@ -48,6 +64,14 @@ class App extends Component {
     }), () => this.props.history.push('/jobs'));
   }
 
+  handleDeleteFollowUp = async id => {
+    await followUpAPI.deleteOne(id);
+    this.setState(state => ({
+      // Yay, filter returns a NEW array
+      followUps: state.followUps.filter(fu => fu._id !== id)
+    }), () => this.props.history.push('/jobs'));
+  }
+
   handleUpdateJob = async updatedJobData => {
     const updatedJob = await jobAPI.update(updatedJobData);
     // Using map to replace just the puppy that was updated
@@ -57,15 +81,35 @@ class App extends Component {
     this.setState(
       { jobs: newJobsArr },
       // This cb function runs after state is updated
-      () => this.props.history.push('/')
+      () => this.props.history.push('/jobs')
     );
+  }
+
+
+  handleUpdateFollowUp = async updatedFollowUpData => {
+    const updatedFollowUp = await followUpAPI.update(updatedFollowUpData);
+    // Using map to replace just the puppy that was updated
+    const newFollowUpArr = this.state.followUps.map(fu =>
+      fu._id === updatedFollowUp._id ? updatedFollowUp : fu
+    );
+    this.setState(
+      { followUps: newFollowUpArr },
+      // This cb function runs after state is updated
+      () => this.props.history.push('/jobs')
+    );
+  }
+
+  async seedMyState() {
+    const jobs = await jobAPI.getAll();
+    const followUps = await followUpAPI.getAll();
+    console.log(followUps)
+    this.setState({ jobs, followUps });
   }
 
 /*--- Lifecycle Methods ---*/
   
   async componentDidMount() {
-    const jobs = await jobAPI.getAll();
-    this.setState({ jobs });
+    this.seedMyState()
   }
 
   render() {
@@ -104,12 +148,23 @@ class App extends Component {
             />
           } />
           <Route exact path='/details' render={({ location }) =>
-            <JobDetailPage location={location} />
+            <JobDetailPage
+              location={location} 
+              handleAddFollowUp={this.handleAddFollowUp}
+              followUps={this.state.followUps}
+            />
           } />
           <Route exact path='/edit' render={({ location }) =>
             <EditJobPage
               handleUpdateJob={this.handleUpdateJob}
               location={location}
+            />
+          } />
+          <Route exact path='/edit/followup' render={({ location }) =>
+            <EditFollowUpPage
+              handleUpdateFollowUp={this.handleUpdateFollowUp}
+              location={location}
+              handleDeleteFollowUp={this.handleUpdateFollowUp}
             />
           } />
         </Switch>

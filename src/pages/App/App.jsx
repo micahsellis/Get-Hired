@@ -14,6 +14,7 @@ import JobDetailPage from '../../components/JobDetailPage/JobDetailPage';
 import EditJobPage from '../../components/EditJobPage/EditJobPage';
 import EditFollowUpPage from '../../components/EditFollowUp/EditFollowUpPage';
 
+
 class App extends Component {
   constructor() {
     super();
@@ -121,7 +122,7 @@ class App extends Component {
         />
         <Switch>
           <Route exact path='/' render={() =>
-            <div>WELCOME! Log in to see your jobs!</div>
+            <img className='hero' src="hero.svg"></img>
           }/>
           <Route exact path='/signup' render={({ history }) => 
             <SignupPage

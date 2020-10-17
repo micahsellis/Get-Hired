@@ -1,29 +1,33 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import {
+  Navbar,
+  Nav,
+  Alert
+} from 'react-bootstrap';
 import './NavBar.css';
 
 const NavBar = (props) => {
   let nav = props.user ?
-    <ul className="nav nav-tabs">
-      <li className="nav-item">
-        <Link className='nav-link' exact to='/jobs'>Jobs LIST</Link>
-      </li>
-      <li className="nav-item">
-        <Link className='nav-link' exact to='/add'>ADD Job</Link>
-      </li>
-      <li className="nav-item">
-        <Link to='' className='nav-link' onClick={props.handleLogout}>LOG OUT</Link>
-      </li>
-      <li className="nav-item">
-        <span className='NavBar-welcome'>WELCOME, {props.user.name}</span>
-      </li>
-    </ul>
+    <>
+      <Navbar className="NavBar justify-content-between" expand="xl" bg="info">
+        <Navbar.Brand href="/"><img src="logo.svg" alt="logo" width="100"/></Navbar.Brand>
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" >
+            <Navbar.Collapse id="responsive-navbar-nav" >
+              <Nav className="mr-auto">
+                <Nav.Link href='/jobs'>Jobs LIST</Nav.Link>
+                <Nav.Link href='/add'>ADD Job</Nav.Link>
+                <Nav.Link href='' onClick={props.handleLogout}>LOG OUT</Nav.Link>
+                <Navbar.Text className="h3">WELCOME, {props.user.name}</Navbar.Text>
+              </Nav>
+            </Navbar.Collapse>
+          </Navbar.Toggle>
+      </Navbar>
+    </>
     :
-    <ul className="nav nav-tabs">
-      <li className="nav-item">
-        <Link className='nav-link' to='/login' className='NavBar-link'>LOG IN</Link>
-      </li>
-    </ul>;
+    <>
+        <Link to='/login' className='NavBar-link'>LOG IN</Link>
+    </>
 
   return (
     <div>

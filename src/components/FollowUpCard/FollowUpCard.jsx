@@ -47,6 +47,8 @@ function followUpCard({ followUp }) {
                         </>: ''}
                     <dt>Currently Tracking</dt>
                     <dd>{followUp.active ? 'Yes' : 'No'}</dd>
+                    <dt>Date Created</dt>
+                    <dd><Moment /></dd>
                 </dl>
                 <Link
                     className="btn btn-xs btn-warning"

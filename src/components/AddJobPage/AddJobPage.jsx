@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
 import tokenService from '../../utils/tokenService'
+import {
+    Form,
+    Container,
+    Col
+} from 'react-bootstrap'
 
 class AddJobPage extends Component {
     state = {
@@ -38,20 +43,23 @@ class AddJobPage extends Component {
 
     render() {
         return (
-            <>
+            <Container>
                 <h1>Add A Job To Track!</h1>
-                <form ref={this.formRef} autoComplete="off" onSubmit={this.handleSubmit}>
-                    <div className="form-group">
-                        <label>Job Listing URL</label>
-                        <input
+                <Form ref={this.formRef} autoComplete="off" onSubmit={this.handleSubmit} noValidate>
+                    <Form.Group>
+                        <Form.Label>Job Listing URL</Form.Label>
+                        <Form.Control
                             className="form-control"
+                            type="text"
                             name="jobURL"
                             value={this.state.formData.jobURL}
                             onChange={this.handleChange}
                         />
-                    </div>
-                    <div className="form-group">
-                        <label>Job Title (required)</label>
+                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                    </Form.Group>
+                    <Form.Row>
+                    <Form.Group as={Col} md="6">
+                        <Form.Label>Job Title (required)</Form.Label>
                         <input
                             className="form-control"
                             name="title"
@@ -59,9 +67,9 @@ class AddJobPage extends Component {
                             onChange={this.handleChange}
                             required
                         />
-                    </div>
-                    <div className="form-group">
-                        <label>Company Name (required)</label>
+                    </Form.Group>
+                    <Form.Group as={Col} md="6">
+                        <Form.Label>Company Name (required)</Form.Label>
                         <input
                             className="form-control"
                             name="company"
@@ -69,79 +77,86 @@ class AddJobPage extends Component {
                             onChange={this.handleChange}
                             required
                         />
-                    </div>
-                    <div className="form-group">
-                        <label>Company Address</label>
+                        </Form.Group>
+                    </Form.Row>
+                    <Form.Group>
+                        <Form.Label>Company Address</Form.Label>
                         <input
                             className="form-control"
                             name="address"
                             value={this.state.formData.address}
                             onChange={this.handleChange}
                         />
-                    </div>
-                    <div className="form-group">
-                        <label>Phone Number (Digits only)</label>
+                    </Form.Group>
+                    <Form.Row>
+                    <Form.Group as={Col} md="6">
+                        <Form.Label>Phone Number (Digits only)</Form.Label>
                         <input
                             className="form-control"
                             name="phone"
                             value={this.state.formData.phone}
                             onChange={this.handleChange}
                         />
-                    </div>
-                    <div className="form-group">
-                        <label>Contact Email Address</label>
+                    </Form.Group>
+                        <Form.Group as={Col} md="6">
+                        <Form.Label>Contact Email Address</Form.Label>
                         <input
                             className="form-control"
                             name="email"
                             value={this.state.formData.email}
                             onChange={this.handleChange}
                         />
-                    </div>
-                    <div className="form-group">
-                        <label>Hiring Manager</label>
+                        </Form.Group>
+                    </Form.Row>
+                    <Form.Row>
+                        <Form.Group as={Col} md="6">
+                        <Form.Label>Hiring Manager</Form.Label>
                         <input
                             className="form-control"
                             name="manager"
                             value={this.state.formData.manager}
                             onChange={this.handleChange}
                         />
-                    </div>
-                    <div className="form-group">
-                        <label>Hiring Manager Title</label>
+                    </Form.Group>
+                        <Form.Group as={Col} md="6">
+                        <Form.Label>Hiring Manager Title</Form.Label>
                         <input
                             className="form-control"
                             name="managerTitle"
                             value={this.state.formData.managerTitle}
                             onChange={this.handleChange}
                         />
-                    </div>
-                    <div className="form-group">
-                        <label>Hiring Manager Email Address</label>
+                        </Form.Group>
+                    </Form.Row>
+                    <Form.Row>
+                        <Form.Group as={Col} md="6">
+                        <Form.Label>Hiring Manager Email Address</Form.Label>
                         <input
                             className="form-control"
                             name="managerEmail"
                             value={this.state.formData.managerEmail}
                             onChange={this.handleChange}
                         />
-                    </div>
-                    <div className="form-group">
-                        <label>Hiring Manager Phone Number</label>
+                    </Form.Group>
+                        <Form.Group as={Col} md="6">
+                        <Form.Label>Hiring Manager Phone Number</Form.Label>
                         <input
                             className="form-control"
                             name="managerPhone"
                             value={this.state.formData.managerPhone}
                             onChange={this.handleChange}
                         />
-                    </div>
+                        </Form.Group>
+                    </Form.Row>
                     <button
                         type="submit"
-                        className="btn"
+                        className="btn btn-xs btn-info"
                         disabled={this.state.invalidForm}
                     >
                         ADD JOB
                     </button>
-                </form>
-            </>
+                </Form>
+            </Container>
         );
     }
 }

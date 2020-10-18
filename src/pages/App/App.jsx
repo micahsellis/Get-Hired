@@ -13,6 +13,9 @@ import AddJobPage from '../../components/AddJobPage/AddJobPage';
 import JobDetailPage from '../../components/JobDetailPage/JobDetailPage';
 import EditJobPage from '../../components/EditJobPage/EditJobPage';
 import EditFollowUpPage from '../../components/EditFollowUp/EditFollowUpPage';
+import {
+  Container
+} from 'react-bootstrap';
 
 
 class App extends Component {
@@ -122,8 +125,9 @@ class App extends Component {
         />
         <Switch>
           <Route exact path='/' render={() =>
-            <img className='hero' src="hero.svg"></img>
+            <img className='hero' src="hero.png"></img>
           }/>
+          <Container className="Container">
           <Route exact path='/signup' render={({ history }) => 
             <SignupPage
               history={history}
@@ -168,6 +172,7 @@ class App extends Component {
               handleDeleteFollowUp={this.handleUpdateFollowUp}
             />
           } />
+          </Container>
         </Switch>
       </div>
     );

@@ -1,29 +1,27 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './JobListItem.css';
+import { Card } from 'react-bootstrap';
 
 function JobListItem(props) {
     return (
-        <div className='panel panel-default'>
-            <div className="panel-heading">
-                <h3 className='panel-title'>{props.job.title}</h3>
-            </div>
-            <div className="panel-footer PuppyListItem-action-panel">
-                <Link
-                    className="btn btn-xs btn-info"
+        <Card style={{ width: '18rem' }}>
+            <Card.Title className="text-center">{props.job.title}</Card.Title>
+            <Card.Link>
+                <Link className="btn btn-xs btn-info"
                     to={{
                         pathname: "/details",
                         state: { job: props.job },
-                    }}
-                >
+                    }} >
                     DETAILS
-                </Link>
+                    </Link>
                 <Link
                     className="btn btn-xs btn-warning"
                     to={{
                         pathname: "/edit",
                         state: { job: props.job },
                     }}
+                    style={{width:"100px"}}
                 >
                     EDIT
                 </Link>
@@ -33,8 +31,9 @@ function JobListItem(props) {
                 >
                     DELETE
                 </button>
-            </div>
-        </div>
+            </Card.Link>
+
+        </Card>
     );
 }
 

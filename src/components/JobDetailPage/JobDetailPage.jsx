@@ -16,6 +16,7 @@ function JobDetailPage(props) {
                 key={job._id}
                 job={job}
             />
+            <h2>Follow Ups:</h2>
             {followUps.filter(fu => fu.jobID === job._id).map(fu => (
                 <FollowUpCard
                     followUp={fu}

@@ -80,7 +80,7 @@ class AddFollowUpPage extends Component {
                         />
                     </Form.Group>
                     <Form.Group as={Col}>
-                        <Form.Label>Contact Title (Digits only)</Form.Label>
+                        <Form.Label>Contact Title</Form.Label>
                         <Form.Control
                             className="form-control"
                             name="contactTitle"
@@ -89,7 +89,7 @@ class AddFollowUpPage extends Component {
                         />
                     </Form.Group>
                     <Form.Group as={Col}>
-                        <Form.Label>Contact Phone Number</Form.Label>
+                        <Form.Label>Contact Phone Number (Digits Only)</Form.Label>
                         <Form.Control
                             className="form-control"
                             name="contactPhone"

@@ -11,7 +11,7 @@ function JobCard({ job }) {
                     <dl>
                         {job.jobURL ? <>
                             <dt>URL</dt>
-                            <dd>{job.jobURL}</dd> </>: ''}
+                            <dd><a href={job.jobURL}>{job.jobURL}</a></dd> </>: ''}
                         {job.company ? <>
                             <dt>Company</dt>
                             <dd>{job.company}</dd></> : ''}

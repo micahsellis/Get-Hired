@@ -65,7 +65,7 @@ function followUpCard({ followUp, idx }) {
                         state: { followUp },
                     }}
                 >
-                    EDIT
+                        EDIT
                 </Link>
             </Card.Body>
             </Accordion.Collapse>

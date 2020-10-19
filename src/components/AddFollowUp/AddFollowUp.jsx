@@ -24,10 +24,26 @@ class AddFollowUpPage extends Component {
 
     formRef = React.createRef();
 
-
     handleSubmit = e => {
         e.preventDefault();
         this.props.handleAddFollowUp(this.state.formData);
+        this.setState({
+            formData: {
+                interviewDate: '',
+                interviewAddress: '',
+                confirmationEmail: '',
+                contactName: '',
+                contactTitle: '',
+                contactPhone: '',
+                contactEmail: '',
+                contactURL: '',
+                notes: '',
+                managerPhone: '',
+                userID: tokenService.getUserFromToken()._id,
+                jobID: this.props.job._id,
+                active: true
+            }
+        })
     };
 
     handleChange = e => {

@@ -8,7 +8,7 @@ class EditFollowUpPage extends Component {
         invalidForm: false,
         formData: this.props.location.state.followUp
     };
-
+    
     formRef = React.createRef();
 
     handleSubmit = e => {
@@ -22,6 +22,7 @@ class EditFollowUpPage extends Component {
             formData,
             invalidForm: !this.formRef.current.checkValidity()
         });
+        console.log(this.props.location.state.followUp._id)
     };
 
     render() {
@@ -122,19 +123,20 @@ class EditFollowUpPage extends Component {
                         <Button
                         className="btns"
                         type="submit"
-                        variant="success"
+                        variant="info"
                         disabled={this.state.invalidForm}
                     >
                         SAVE CHANGES
                     </Button>&nbsp;&nbsp;&nbsp;&nbsp;
                     <Button className="btns" as={Link} variant="warning" to='/jobs'>CANCEL</Button>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <Button
+                    </Form>
+                    {/* <Button
+                            variant="danger"
                             className="btns"
-                        onClick={() => this.props.handleDeleteFollowUp(this.props.followUp._id)}
+                            onClick={() => this.props.handleDeleteFollowUp(this.props.location.state.followUp._id)}
                     >
                         DELETE
-                    </Button>
-                    </Form>
+                    </Button> */}
                 </Card>
             </>
         );

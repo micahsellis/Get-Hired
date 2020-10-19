@@ -59,8 +59,8 @@ class App extends Component {
       followUps: [...state.followUps, newFollowUp]
     }),
       // Using cb to wait for state to update before rerouting
-      () => this.props.history.push('/jobs'));
-  }
+      // () => this.props.history.push('/jobs'));
+    )}
 
   handleDeleteJob = async id => {
     await jobAPI.deleteOne(id);
@@ -71,6 +71,7 @@ class App extends Component {
   }
 
   handleDeleteFollowUp = async id => {
+    console.log(id)
     await followUpAPI.deleteOne(id);
     this.setState(state => ({
       // Yay, filter returns a NEW array
@@ -157,7 +158,7 @@ class App extends Component {
             <JobDetailPage
               location={location} 
               handleAddFollowUp={this.handleAddFollowUp}
-              followUps={this.state.followUps}
+                followUps={this.state.followUps}
             />
           } />
           <Route exact path='/edit' render={({ location }) =>
@@ -169,8 +170,8 @@ class App extends Component {
           <Route exact path='/edit/followup' render={({ location }) =>
             <EditFollowUpPage
               handleUpdateFollowUp={this.handleUpdateFollowUp}
-              location={location}
-              handleDeleteFollowUp={this.handleUpdateFollowUp}
+                location={location}
+                handleDeleteFollowUp={this.handleUpdateFollowUp}
             />
           } />
           </Container>

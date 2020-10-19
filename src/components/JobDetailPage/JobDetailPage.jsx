@@ -25,6 +25,7 @@ function JobDetailPage(props) {
                 <FollowUpCard
                     followUp={fu}
                     idx={idx + 1}
+                    handleDeleteFollowUp={props.handleUpdateFollowUp}
                     key={fu._id}
                 />
             ))}

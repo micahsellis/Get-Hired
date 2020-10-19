@@ -1,14 +1,12 @@
 import React from "react";
 import "./JobListPage.css";
 import JobListItem from "../JobListItem/JobListItem";
-import { Link } from 'react-router-dom';
 import { CardColumns } from "react-bootstrap";
 
 function JobListPage(props) {
     return (
         <>
-            <h1>Job List</h1>
-            <div className="JobListPage-grid">
+            <h1 className="text-center">Job List</h1>
                 <CardColumns>
                 {props.jobs.map(job => (
                     <JobListItem
@@ -18,7 +16,6 @@ function JobListPage(props) {
                     />
                 ))}
                 </CardColumns>
-            </div>
         </>
     );
 }

@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Card } from 'react-bootstrap';
+import { Card, Button } from 'react-bootstrap';
 
 function JobCard({ job }) {
     return (
-        <Card style={{ width: '18rem' }}>
+        <Card>
             <Card.Body>
-                <Card.Title>{job.title}</Card.Title>
+                <Card.Title>{job.title}</Card.Title><br></br>
                 <Card.Text>
                     <dl>
                         {job.jobURL ? <>
@@ -37,7 +37,7 @@ function JobCard({ job }) {
                         <dd>{job.active ? 'Yes' : 'No'}</dd>
                     </dl>
                 </Card.Text>
-                <Card.Link href='/jobs'>RETURN TO LIST</Card.Link>
+                <Card.Link as={Button} variant="info" href='/jobs'>RETURN TO LIST</Card.Link>
             </Card.Body>
         </Card>
     );

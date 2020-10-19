@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import tokenService from '../../utils/tokenService'
+import tokenService from '../../utils/tokenService';
+import { Card, Form, Col, Button } from 'react-bootstrap'
 
-class AddJobPage extends Component {
+class AddFollowUpPage extends Component {
     state = {
         invalidForm: true,
         formData: {
@@ -15,8 +16,8 @@ class AddJobPage extends Component {
             contactURL: '',
             notes: '',
             managerPhone: '',
-            userID: tokenService.getUserFromToken(),
-            jobId: this.props.jobID,
+            userID: tokenService.getUserFromToken()._id,
+            jobID: this.props.job._id,
             active: true
         }
     };
@@ -39,100 +40,100 @@ class AddJobPage extends Component {
 
     render() {
         return (
-            <>
-                <h1>Add A Follow Up Action</h1>
-                <form ref={this.formRef} autoComplete="off" onSubmit={this.handleSubmit}>
-                    <div className="form-group">
-                        <label>Interview Date</label>
-                        <input
-                            className="form-control"
+            <Card><br></br>
+                <Form ref={this.formRef} autoComplete="off" onSubmit={this.handleSubmit}>
+                    <Form.Group as={Col}>
+                        <Form.Label>Interview Date</Form.Label>
+                        <Form.Control
+                            type="datetime-local"
                             name="interviewDate"
                             value={this.state.formData.interviewDate}
                             onChange={this.handleChange}
                         />
-                    </div>
-                    <div className="form-group">
-                        <label>Interview Address</label>
-                        <input
+                    </Form.Group>
+                    <Form.Group as={Col}>
+                        <Form.Label>Interview Address</Form.Label>
+                        <Form.Control
                             className="form-control"
                             name="interviewAddress"
                             value={this.state.formData.interviewAddress}
                             onChange={this.handleChange}
                         />
-                    </div>
-                    <div className="form-group">
-                        <label>Confirmation Email</label>
-                        <input
+                    </Form.Group>
+                    <Form.Group as={Col}>
+                        <Form.Label>Confirmation Email</Form.Label>
+                        <Form.Control
                             className="form-control"
                             name="confirmationEmail"
                             value={this.state.formData.confirmationEmail}
                             onChange={this.handleChange}
                         />
-                    </div>
-                    <div className="form-group">
-                        <label>Contact Name</label>
-                        <input
+                    </Form.Group>
+                    <Form.Group as={Col}>
+                        <Form.Label>Contact Name</Form.Label>
+                        <Form.Control
                             className="form-control"
                             name="contactName"
                             value={this.state.formData.contactName}
                             onChange={this.handleChange}
                         />
-                    </div>
-                    <div className="form-group">
-                        <label>Contact Title (Digits only)</label>
-                        <input
+                    </Form.Group>
+                    <Form.Group as={Col}>
+                        <Form.Label>Contact Title (Digits only)</Form.Label>
+                        <Form.Control
                             className="form-control"
                             name="contactTitle"
                             value={this.state.formData.contactTitle}
                             onChange={this.handleChange}
                         />
-                    </div>
-                    <div className="form-group">
-                        <label>Contact Phone Number</label>
-                        <input
+                    </Form.Group>
+                    <Form.Group as={Col}>
+                        <Form.Label>Contact Phone Number</Form.Label>
+                        <Form.Control
                             className="form-control"
                             name="contactPhone"
                             value={this.state.formData.contactPhone}
                             onChange={this.handleChange}
                         />
-                    </div>
-                    <div className="form-group">
-                        <label>Contact Email</label>
-                        <input
+                    </Form.Group>
+                    <Form.Group as={Col}>
+                        <Form.Label>Contact Email</Form.Label>
+                        <Form.Control
                             className="form-control"
                             name="contactEmail"
                             value={this.state.formData.contactEmail}
                             onChange={this.handleChange}
                         />
-                    </div>
-                    <div className="form-group">
-                        <label>Contact URL</label>
-                        <input
+                    </Form.Group>
+                    <Form.Group as={Col}>
+                        <Form.Label>Contact URL</Form.Label>
+                        <Form.Control
                             className="form-control"
                             name="contactURL"
                             value={this.state.formData.contactURL}
                             onChange={this.handleChange}
                         />
-                    </div>
-                    <div className="form-group">
-                        <label>Notes</label>
-                        <input
-                            className="form-control"
+                    </Form.Group>
+                    <Form.Group as={Col}>
+                        <Form.Label>Notes</Form.Label>
+                        <Form.Control
+                            as="textarea"
                             name="notes"
                             value={this.state.formData.notes}
                             onChange={this.handleChange}
                         />
-                    </div>
-                    <button
-                        type="submit"
-                        className="btn"
+                    </Form.Group>
+                        <Button
+                            type="submit"
+                            className="btn"
                         disabled={this.state.invalidForm}
-                    >
-                        ADD JOB
-                    </button>
-                </form>
-            </>
+                        style={{margin: "15px"}}
+                        >
+                            ADD FOLLOW UP
+                        </Button>
+                </Form>
+            </Card>
         );
     }
 }
-export default AddJobPage;
+export default AddFollowUpPage;

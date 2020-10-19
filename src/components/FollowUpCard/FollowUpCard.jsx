@@ -1,23 +1,29 @@
 import React from 'react';
 import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
+import { Card, Button, Accordion } from 'react-bootstrap';
+import './FollowUpCard.css';
 
-function followUpCard({ followUp }) {
+
+function followUpCard({ followUp, idx }) {
     return (
-        <div className='panel panel-default'>
-            <div className="panel-heading">
-                <h3 className='panel-title'>
-                    <Moment fromNow>{followUp.createdAt}</Moment>
-                </h3>
-            </div>
-            <div className='panel-body'>
+        <Card>
+                <Accordion.Toggle
+                as={Card.Header}
+                eventKey={ idx }
+                style={{backgroundColor: "lightgray"}}
+                >
+                <Moment local fromNow>{followUp.updatedAt}</Moment>
+                </Accordion.Toggle>
+            <Accordion.Collapse eventKey={idx}>
+            <Card.Body>
                 <dl>
-                    {/* {followUp.interviewDate ?
-                        `<dt>Interview Date</dt>
-                        <dd>${followUp.interviewDate.moment().format('MMMM Do YYYY, h:mm:ss a')}</dd>`
-                        : '' } */}
+                    {followUp.interviewDate ? <>
+                        <dt>Interview Date</dt>
+                            <dd><Moment local format="MM-DD-YY - hh:mm a">{followUp.interviewDate}</Moment></dd></>
+                        : '' }
                     {followUp.interviewAddress ?
-                        <>
+                            <>
                             <dt>Interview Address</dt>
                             <dd>{followUp.interviewAddress}</dd>
                         </>
@@ -31,7 +37,7 @@ function followUpCard({ followUp }) {
                         : ''}
                     {followUp.contactPhone ? <>
                         <dt>Contact Phone</dt>
-                        <dd>{followUp.contactPhone.toString().slice(0, 3)}) {followUp.contactPhone.toString().slice(3, 6)}-{followUp.contactPhone.toString().slice(6, 10)}</dd>
+                        <dd>({followUp.contactPhone.toString().slice(0, 3)}) {followUp.contactPhone.toString().slice(3, 6)}-{followUp.contactPhone.toString().slice(6, 10)}</dd>
                         </>: ''}
                     {followUp.contactEmail ? <>
                         <dt>Contact Email</dt>
@@ -48,7 +54,9 @@ function followUpCard({ followUp }) {
                     <dt>Currently Tracking</dt>
                     <dd>{followUp.active ? 'Yes' : 'No'}</dd>
                     <dt>Date Created</dt>
-                    <dd><Moment /></dd>
+                        <dd><Moment local format="MM-DD-YY - hh:mm a">{followUp.createdAt}</Moment></dd>
+                        <dt>Last Updated</dt>
+                        <dd><Moment local format="MM-DD-YY - hh:mm a">{followUp.updatedAt}</Moment></dd>
                 </dl>
                 <Link
                     className="btn btn-xs btn-warning"
@@ -59,8 +67,9 @@ function followUpCard({ followUp }) {
                 >
                     EDIT
                 </Link>
-            </div>
-        </div>
+            </Card.Body>
+            </Accordion.Collapse>
+        </Card>
     );
 }
 

@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import {Form, Container, Col} from 'react-bootstrap'
+import {Form, Col, Button, Card} from 'react-bootstrap'
 
 class EditJobPage extends Component {
     state = {
         invalidForm: false,
-        // Refer to PuppyListItem to see how puppy is being passed via the <Link>
         formData: this.props.location.state.job
     };
 
@@ -26,10 +25,10 @@ class EditJobPage extends Component {
 
     render() {
         return (
-            <>
-                <h1>Edit Job</h1>
+            <Card>
+                <h1 className="text-center" style={{marginTop: "10px"}}>Edit Job</h1>
                 
-                <Form ref={this.formRef} autoComplete="off" onSubmit={this.handleSubmit}>
+                <Form ref={this.formRef} autoComplete="off" onSubmit={this.handleSubmit} style={{margin: "10px"}}>
                     <Form.Group>
                         <Form.Label>Job Listing URL</Form.Label>
                         <Form.Control
@@ -132,16 +131,16 @@ class EditJobPage extends Component {
                             />
                         </Form.Group>
                     </Form.Row>
-                    <button
+                    <Button
                         type="submit"
-                        className="btn btn-xs"
+                        variant="success"
                         disabled={this.state.invalidForm}
                     >
                         SAVE JOB CHANGES
-         </button>&nbsp;&nbsp;
-         <Link to='/'>CANCEL</Link>
+         </Button>&nbsp;&nbsp;
+         <Button as={Link} to='/'>CANCEL</Button>
                 </Form>
-            </>
+            </Card>
         );
     }
 }

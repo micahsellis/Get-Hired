@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch, Redirect, NavLink } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import './App.css';
 import SignupPage from '../SignupPage/SignupPage';
 import LoginPage from '../LoginPage/LoginPage';
@@ -52,7 +52,9 @@ class App extends Component {
   }
 
   handleAddFollowUp = async newFollowUpData => {
+    console.log(newFollowUpData)
     const newFollowUp = await followUpAPI.create(newFollowUpData);
+    console.log(newFollowUp)
     this.setState(state => ({
       followUps: [...state.followUps, newFollowUp]
     }),
@@ -106,7 +108,6 @@ class App extends Component {
   async seedMyState() {
     const jobs = await jobAPI.getAll();
     const followUps = await followUpAPI.getAll();
-    console.log(followUps)
     this.setState({ jobs, followUps });
   }
 

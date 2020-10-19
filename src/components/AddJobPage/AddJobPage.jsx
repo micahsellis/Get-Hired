@@ -45,7 +45,7 @@ class AddJobPage extends Component {
         return (
             <Container>
                 <h1>Add A Job To Track!</h1>
-                <Form ref={this.formRef} autoComplete="off" onSubmit={this.handleSubmit} noValidate>
+                <Form ref={this.formRef} autoComplete="off" onSubmit={this.handleSubmit}>
                     <Form.Group>
                         <Form.Label>Job Listing URL</Form.Label>
                         <Form.Control
@@ -150,7 +150,7 @@ class AddJobPage extends Component {
                     </Form.Row>
                     <button
                         type="submit"
-                        className="btn btn-xs btn-info"
+                        className="btn btn-xs btn-success"
                         disabled={this.state.invalidForm}
                     >
                         ADD JOB

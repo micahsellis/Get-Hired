@@ -2,44 +2,59 @@ import React from 'react';
 import JobCard from '../../components/JobCard/JobCard';
 import FollowUpCard from '../FollowUpCard/FollowUpCard';
 import AddFollowUp from '../AddFollowUp/AddFollowUp';
-import followUpCard from '../FollowUpCard/FollowUpCard';
+import { Accordion, Col, Row } from 'react-bootstrap';
+
+
+
 
 
 function JobDetailPage(props) {
     let followUps = props.followUps
     const job = props.location.state.job;
-    console.log(followUps)
     let jobs = followUps ?
-        <>
-            <h1>Job Details</h1>
+        <Row>
+            <Col sm={12} md={6} lg={6} style={{margin: "0"}}>
+            <h3>Job Details</h3>
             <JobCard
                 key={job._id}
                 job={job}
-            />
-            <h2>Follow Ups:</h2>
-            {followUps.filter(fu => fu.jobID === job._id).map(fu => (
+            /><br></br>
+                <h3>Follow Ups:</h3>
+                <Accordion defaultActiveKey="0">
+            {followUps.sort((f,u) => f.updatedAt - u.updatedAt).filter(fu => fu.jobID === job._id).map((fu, idx) => (
                 <FollowUpCard
                     followUp={fu}
+                    idx={idx + 1}
                     key={fu._id}
                 />
             ))}
+                </Accordion>
+            </Col>
+            <Col sm={12} md={6} lg={6}>
+            <h4>Add A Follow Up Action</h4>
             <AddFollowUp
-                jobID={job._id} 
+                job={job} 
                 handleAddFollowUp={props.handleAddFollowUp}
                 />
-        </>
+            </Col>
+        </Row>
         :
-        <>
-            <h1>Job Details</h1>
+        <Row>
+            <Col sm={12} md={6} lg={6} style={{ margin: "0" }}>
+            <h3>Job Details</h3>
             <JobCard
                 key={job._id}
                 job={job}
-            />
+                />
+            </Col>
+            <Col sm={12} md={6} lg={6}>
+            <h3>Add A Follow Up Action</h3>
             <AddFollowUp
-                jobID={job._id} 
+                job={job} 
                 handleAddFollowUp={props.handleAddFollowUp}
                 />
-        </>
+            </Col>
+        </Row>
 
     return (
         <>

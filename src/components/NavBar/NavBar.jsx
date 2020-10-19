@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import {
   Navbar,
   Nav
@@ -9,7 +8,7 @@ import './NavBar.css';
 const NavBar = (props) => {
   let nav = props.user ?
     <div>
-      <Navbar className="NavBar justify-content-between" expand="xl" bg="info">
+      <Navbar className="NavBar justify-content-between" expand="xl">
         <Navbar.Brand href="/"><img src="logo.svg" alt="logo" width="100" /></Navbar.Brand>
         <Navbar/> <Nav>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -19,14 +18,14 @@ const NavBar = (props) => {
                 <Nav.Link href='/add'>ADD Job</Nav.Link>
                 <Nav.Link href='' onClick={props.handleLogout}>LOG OUT</Nav.Link>
               </Nav>
-                <Navbar.Text className="h3">WELCOME, {props.user.name}</Navbar.Text>
+                <Navbar.Text className="h5">&nbsp;&nbsp;{props.user.name}</Navbar.Text>
           </Navbar.Collapse>
         </Nav>
         </Navbar>
     </div>
     :
     <>
-      <Navbar className="NavBar justify-content-between" expand="xl" bg="info">
+      <Navbar className="NavBar justify-content-between" expand="xl">
         <Navbar.Brand href="/"><img src="logo.svg" alt="logo" width="100" /></Navbar.Brand>
         <Navbar /> <Nav>
           <Nav.Link href='/login' className='NavBar-link'>LOG IN</Nav.Link>

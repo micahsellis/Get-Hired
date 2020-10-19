@@ -1,12 +1,14 @@
-/* .NavBar {
-    display: flex;
-    justify-content: space-around;
-    margin: 0 0 10px;
-    background-color: #01B6BD;
-    height: 40px; 
-   
-  } */
+.NavBar {
 
+    background-color: #01B6BD;
+    height: 50px; 
+    z-index: 100;
+    color: white !important;
+  }
+
+  .NavBar .h5 {
+    margin-top: 6px;
+  }
   /* .NavBar img
 
 

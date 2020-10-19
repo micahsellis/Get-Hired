@@ -1,25 +1,37 @@
-# Get Hired# Get-Hired
+# Get Hired
 
+A simple React App to track your job search. Users are able to create jobs and add informantion like the hiring manager, contact info, and job posting URL. They can then add follow ups when they've applied, found new contacts, or gotten an interview and add notes as they go!  [Stay on track to earn your next job!](https://get-hired-now.herokuapp.com/)
 
-mkdir src/components/JobListPage
-touch src/components/JobListPage/JobListPage.jsx
-touch src/components/JobListPage/JobListPage.css
+# Screenshots
+Home Page:
+![home page](https://i.imgur.com/iJQgr03.png)
+Job Details:
+![job details](https://i.imgur.com/XRuWlaG.png)
+Add Job Posting:
+![add job posting](https://i.imgur.com/uTRoKSg.png)
+Follow Up Example:
+![follow up](https://i.imgur.com/2HsPV7i.png)
 
-mkdir src/components/JobListItem
-touch src/components/JobListItem/JobListItem.jsx
-touch src/components/JobListItem/JobListItem.css
+# Technologies Used
+- React.js
+- Node.js
+- MongoDB
+- Mongoose
+- Express Web Framework
+- JavaScript
+- CSS
+- HTML
+- React-Bootstrap CSS Framework
+- Custom Authorization
 
-mkdir src/components/JobCard
-touch src/components/JobCard/JobCard.jsx
+# Getting Started
+- [Here's the Trello board that got it all started](https://trello.com/b/iNaMXYgG/get-hired)
+- [Link to the deployed App](https://get-hired-now.herokuapp.com/)
 
-mkdir src/components/AddJobPage
-touch src/components/AddJobPage/AddJobPage.jsx
+# Next Steps (Planned future enhancements)
+- Connect Job board APIs to create an all in 1 job searching and tracking app
+- Allow users to deactivate jobs or follow up actions so that active ones come top of list
+- Implement web crawling to further the usefulness of the job search functionality and automatically import information from job postings
 
-mkdir src/components/EditJobPage
-touch src/components/EditJobPage/EditJobPage.jsx
-
-mkdir src/components/JobDetailPage
-touch src/components/JobDetailPage/JobDetailPage.jsx
-
-mkdir src/services
-touch src/services/jobs-api.js
+# About ME
+[Link up with me on Linkedin!](https://www.linkedin.com/in/micahsellis/)

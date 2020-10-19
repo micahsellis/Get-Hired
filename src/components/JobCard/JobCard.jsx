@@ -11,28 +11,28 @@ function JobCard({ job }) {
                     <dl>
                         {job.jobURL ? <>
                             <dt>URL</dt>
-                            <dd>job.jobURL</dd> </>: ''}
+                            <dd>{job.jobURL}</dd> </>: ''}
                         {job.company ? <>
                             <dt>Company</dt>
-                            <dd>job.company</dd></> : ''}
+                            <dd>{job.company}</dd></> : ''}
                         {job.address ? <>
                             <dt>Address</dt>
-                            <dd>job.address</dd></> : ''}
+                            <dd>{job.address}</dd></> : ''}
                         {job.phone ? <>
                             <dt>Phone Number</dt>
-                            <dd>`(${job.phone.toString().slice(0, 3)}) ${job.phone.toString().slice(3, 6)}-${job.phone.toString().slice(6, 10)}`</dd></> : ''}
+                            <dd>({job.phone.toString().slice(0, 3)}) {job.phone.toString().slice(3, 6)}-{job.phone.toString().slice(6, 10)}</dd></> : ''}
                         {job.email ? <>
                             <dt>Email</dt>
-                            <dd>job.email</dd></> : ''}
+                            <dd>{job.email}</dd></> : ''}
                         {job.manager ? <>
                             <dt>Hiring Manager</dt>
-                            <dd>job.manager</dd></> : ''}{job.managerTitle ? ` - ${job.managerTitle}` : ''}
+                            <dd>{job.manager}{job.managerTitle ? ` - ${job.managerTitle}` : ''}</dd></> : ''}
                         {job.managerEmail ? <>
                             <dt>Hiring Mangaer Email</dt>
-                            <dd>job.managerEmail</dd></> : ''}
+                            <dd>{job.managerEmail}</dd></> : ''}
                         {job.managerPhone ? <>
                             <dt>Hiring Manager Phone</dt>
-                            <dd>`(${job.managerPhone.toString().slice(0, 3)}) ${job.managerPhone.toString().slice(3, 6)}-${job.managerPhone.toString().slice(6, 10)}`</dd></> : ''}
+                            <dd>({job.managerPhone.toString().slice(0, 3)}) {job.managerPhone.toString().slice(3, 6)}-{job.managerPhone.toString().slice(6, 10)}</dd></> : ''}
                         <dt>Currently Tracking</dt>
                         <dd>{job.active ? 'Yes' : 'No'}</dd>
                     </dl>

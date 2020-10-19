@@ -63,6 +63,7 @@ class AddFollowUpPage extends Component {
                     <Form.Group as={Col}>
                         <Form.Label>Confirmation Email</Form.Label>
                         <Form.Control
+                            as="textarea"
                             className="form-control"
                             name="confirmationEmail"
                             value={this.state.formData.confirmationEmail}

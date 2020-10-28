@@ -41,3 +41,19 @@
 .Container {
   margin-top: 10px;
 }
+
+.login-alert {
+  margin-bottom: 0 !important;
+}
+
+.alert, .alert p, .alert button {
+  /* padding-top: 2px !important; */
+  padding-bottom: 0 !important;
+  padding-top: 2px !important;
+  margin-bottom: 2px !important;
+  text-align: center;
+}
+
+.hero {
+  transform: translateY(-2px);
+}

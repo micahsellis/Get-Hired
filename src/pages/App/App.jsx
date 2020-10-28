@@ -13,6 +13,7 @@ import AddJobPage from '../../components/AddJobPage/AddJobPage';
 import JobDetailPage from '../../components/JobDetailPage/JobDetailPage';
 import EditJobPage from '../../components/EditJobPage/EditJobPage';
 import EditFollowUpPage from '../../components/EditFollowUp/EditFollowUpPage';
+import Banner from '../../components/Banner'
 import {
   Container
 } from 'react-bootstrap';
@@ -125,6 +126,7 @@ class App extends Component {
         user={this.state.user} 
         handleLogout={this.handleLogout}
         />
+        <Banner />
         <Switch>
           <Route exact path='/' render={() =>
             <img className='hero' src="hero.png"></img>
